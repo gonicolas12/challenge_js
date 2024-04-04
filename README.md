@@ -56,7 +56,7 @@ Pour démarrer le projet de Suivi des Jeux, assurez-vous d'avoir un environnemen
    node cmd/main.js
    ```
 
-4. **Accéder à l'application** en ouvrant votre navigateur web sur ce lien -> http://localhost:3000.
+4. **Accéder à l'application** en ouvrant votre navigateur web sur ce lien -> http://localhost:8080.
 
 
 ### Auteurs :
