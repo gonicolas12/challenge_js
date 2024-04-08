@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil des Jeux</title>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+    </audio>    
+    <canvas id="snakeCanvas"></canvas>
+    <div class="container">
+        <h1>Choisissez un jeu à jouer</h1>
+        <div class="games-grid">
+            <button class="game-button" onclick="location.href='snake.html'">Snake</button>
+            <button class="game-button" onclick="location.href='morpion.html'">Morpion</button>
+            <button class="game-button" onclick="location.href='vitesseFrappe.html'">Vitesse de Frappe</button>
+            <button class="game-button" onclick="location.href='visualMemoryTest.html'">Mémoire Visuelle</button>
+        </div>
+        <button class="game-button centered" onclick="location.href='triBulle.html'">Tri à Bulle</button>
+    </div>
+    <script src="../assets/js/snakeAnimation.js"></script>
+</body>
+</html>

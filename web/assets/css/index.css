@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0); /* Fond transparent */
+    color: #fff;
+}
+
+/* Styles pour le canvas */
+canvas#snakeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a0a0a;
+    z-index: -1; /* Place le canvas en arrière-plan */
+}
+
+/* Styles pour le contenu du menu */
+.container {
+    position: relative; /* Positionne le contenu par rapport à son conteneur parent */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    z-index: 1; /* Place le contenu au-dessus du canvas */
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    color: #FFD700; /* Couleur dorée pour le titre */
+    text-align: center;
+    margin-bottom: 40px; /* Plus d'espace sous le titre */
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px; /* Augmenter l'espacement entre les boutons */
+    margin-bottom: 40px; /* Plus d'espace sous les boutons */
+}
+
+.game-button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #FFD700; /* Bordure dorée */
+    padding: 20px; /* Plus de padding pour de plus gros boutons */
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.game-button:hover {
+    background-color: #555;
+    transform: scale(1.05); /* Effet de survol pour agrandir le bouton */
+}
+
+.centered {
+    grid-column: span 2;
+}
