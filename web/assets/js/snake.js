@@ -9,11 +9,11 @@ let d;
 
 let snakeHeadImg = new Image();
 snakeHeadImg.onload = function() { draw(); }
-snakeHeadImg.src = 'TeteSerpent.png';
+snakeHeadImg.src = '../img/CorpsSerpent.png';
 let snakeBodyImg = new Image();
-snakeBodyImg.src = 'CorpsSerpent.png';
+snakeBodyImg.src = '../img/CorpsSerpent.png';
 let fruitImg = new Image();
-fruitImg.src = 'PommeSnake.png';
+fruitImg.src = '../img/PommeSnake.png';
 
 document.addEventListener("keydown", direction);
 function direction(event) {
