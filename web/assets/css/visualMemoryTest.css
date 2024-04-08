@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#startButton {
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#levelCounter {
+    font-family: 'Press Start 2P', cursive;
+}
+  
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+  
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    gap: 5px;
+    margin-bottom: 20px;
+}
+  
+.square {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border: 1px solid #999;
+}
+  
+.square.on {
+    background-color: #76B947;
+}
+  
+.message {
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    margin-top: 20px;
+    font-size: 24px;
+    width: 200px;
+    text-align: center;
+    height: 50px;
+    color: #333;
+}
+  
