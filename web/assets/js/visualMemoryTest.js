@@ -1,20 +1,20 @@
-const grid = document.getElementById('grid');
+const levelCounter = document.getElementById('levelCounter');
 const startButton = document.getElementById('startButton');
-const messageDisplay = document.getElementById('message'); // Assurez-vous que cet élément existe dans votre HTML
+const messageDisplay = document.getElementById('message');
+const grid = document.getElementById('grid');
+const timeReductionPerLevel = 200;
+const baseDisplayTime = 2000;
+let displayTime = 2000; // temp d'affichage initial des carrés
+let currentLevel = 1; // suivi du niveau actuel de l'utilisateur
 let correctSquares = [];
 let guessing = false;
-let displayTime = 2000; // Temps d'affichage initial des carrés
-const baseDisplayTime = 2000;
-const timeReductionPerLevel = 200;
-let currentLevel = 1; // Suivi du niveau actuel de l'utilisateur
-const levelCounter = document.getElementById('levelCounter');
 
 function updateLevelDisplay() {
-  levelCounter.textContent = `Niveau: ${currentLevel}`; // Met à jour l'affichage du niveau
+  levelCounter.textContent = `Niveau: ${currentLevel}`; // met à jour l'affichage du niveau
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    levelCounter.style.display = 'none'; // Assure que le compteur de niveau est caché au chargement
+    levelCounter.style.display = 'none'; // assure que le compteur de niveau est caché au chargement
 });  
 
 function createGrid(size) {
@@ -22,6 +22,7 @@ function createGrid(size) {
   for (let i = 0; i < size * size; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
+
     square.addEventListener('click', function() {
       if (guessing) {
         checkSquare(this, i);
@@ -43,9 +44,9 @@ function randomizeSquares(numberOfSquares) {
   }
 }
 function checkSquare(square, index) {
-    // Vérifie si le carré a déjà été identifié comme correct pour ignorer les clics supplémentaires
+    // vérifie si le carré a déjà été identifié comme correct pour ignorer les clics supplémentaires
     if (square.style.backgroundColor === 'green') {
-      // Le carré a déjà été correctement identifié, ne fait rien
+      // si le carré a déjà été correctement identifié, ne fait rien
       return;
     }
   
@@ -63,18 +64,18 @@ function checkSquare(square, index) {
 
 function showSuccess() {
     grid.style.display = 'none';
-    levelCounter.style.display = 'none'; // Cache le compteur de niveau
+    levelCounter.style.display = 'none'; // cache le compteur de niveau
     messageDisplay.innerHTML = '<span class="message">Passage au niveau suivant...</span>';
     startButton.style.display = 'none';
     setTimeout(() => {
       messageDisplay.innerHTML = '';
       grid.style.display = 'grid';
-      levelCounter.style.display = 'block'; // Réaffiche le compteur de niveau
-      currentLevel++; // Incrémente le niveau
+      levelCounter.style.display = 'block';
+      currentLevel++;
       displayTime -= timeReductionPerLevel;
-      updateLevelDisplay(); // Met à jour l'affichage du niveau
+      updateLevelDisplay(); // met à jour l'affichage du niveau
       startTest();
-    }, 2000); // Attente avant de démarrer le prochain niveau
+    }, 2000); // attente avant de démarrer le prochain niveau
 }
 
 function showFailure() {
@@ -92,9 +93,9 @@ function showFailure() {
     startButton.innerText = 'Recommencer';
     startButton.onclick = function() {
       document.getElementById('message').innerHTML = '';
-      currentLevel = 1; // Réinitialise le niveau
+      currentLevel = 1; // reinitialise le niveau
       displayTime = baseDisplayTime;
-      updateLevelDisplay(); // Réinitialise l'affichage du niveau
+      updateLevelDisplay();
       startTest();
     };
 }
@@ -102,7 +103,7 @@ function showFailure() {
 function startTest() {
     grid.innerHTML = '';
     grid.style.display = 'grid';
-    levelCounter.style.display = 'block'; // Assure que le compteur de niveau est visible au démarrage
+    levelCounter.style.display = 'block';
     createGrid(4);
     randomizeSquares(5);
     guessing = false;
@@ -114,13 +115,13 @@ function startTest() {
       }
       guessing = true;
     }, Math.max(displayTime, 100));
-    updateLevelDisplay(); // Assure que le niveau est correctement affiché au démarrage
+    updateLevelDisplay();
 }
 
 startButton.addEventListener('click', () => {
-    currentLevel = 1; // Réinitialise le niveau
-    displayTime = baseDisplayTime; // Réinitialise le temps d'affichage
-    updateLevelDisplay(); // Met à jour l'affichage du niveau
-    levelCounter.style.display = 'block'; // Affiche le compteur de niveau lorsque le jeu commence
+    currentLevel = 1;
+    displayTime = baseDisplayTime;
+    updateLevelDisplay();
+    levelCounter.style.display = 'block';
     startTest();
 });
