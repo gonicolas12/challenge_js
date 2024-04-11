@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
  
 body {
-    font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,11 +10,12 @@ body {
 }
 
 #board {
+    font-family: 'Press Start 2P', cursive;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-bottom: 20px;
-    perspective: 600px; /* Ajoutez cette ligne */
+    perspective: 600px;
 }
 
 .cell {
@@ -28,17 +28,18 @@ body {
     font-size: 2em;
     cursor: pointer;
     background-color: #fff;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.2); /* Ajoutez cette ligne */
-    transition: transform 0.5s; /* Ajoutez cette ligne */
-    position: relative; /* Ajoutez cette ligne */
+    box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+    transition: transform 0.5s;
+    position: relative;
 }
 
 .cell:hover {
-    box-shadow: 0 10px 10px rgba(0,0,0,0.1); /* Ajoutez cette ligne */
-    transform: rotateY(180deg); /* Ajoutez cette ligne */
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    transform: rotateY(180deg);
 }
 
 button {
+    font-family: 'Press Start 2P', cursive;
     padding: 10px 20px;
     margin-right: 10px;
     font-size: 1em;
@@ -46,11 +47,13 @@ button {
 }
 
 #mode-options {
+    font-family: 'Press Start 2P', cursive;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
 
 #mode-options label {
+    font-family:  'Press Start 2P', cursive;
     margin-right: 10px;
 }

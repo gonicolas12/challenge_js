@@ -13,7 +13,7 @@ class Morpion {
             this.winner = this.player;
         }
         this.player = this.player === 'X' ? 'O' : 'X';
-        this.nextMove(); // Check for end game after each move
+        this.nextMove(); // Vérification de la fin du jeu après chaque action
     }
 
     checkWin() {
@@ -88,13 +88,13 @@ class Morpion {
             alert(`Game over! The winner is ${this.winner}`);
             let playAgain = confirm("Do you want to play again?");
             if (playAgain) {
-                this.reset(this.player, this.mode); // Keep the same player and mode
+                this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
             }
         } else if (!this.board.includes(null)) {
             alert("Game over! It's a draw");
             let playAgain = confirm("Do you want to play again?");
             if (playAgain) {
-                this.reset(this.player, this.mode); // Keep the same player and mode
+                this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
             }
         }
     }
@@ -103,7 +103,7 @@ class Morpion {
         this.board = Array(9).fill(null);
         this.player = firstPlayer;
         this.winner = null;
-        this.mode = mode; // Reset the game mode as well
+        this.mode = mode; // Réinitialisez également le mode de jeu
     }
 }
 
@@ -113,7 +113,7 @@ let resetButton = document.getElementById('reset');
 let modeSelect = document.getElementById('mode');
 
 resetButton.addEventListener('click', () => {
-    game.reset(game.player, game.mode); // Keep the same player and mode
+    game.reset(game.player, game.mode); // Garder le même utilisateur et le même mode
     updateBoard();
 });
 
@@ -135,7 +135,7 @@ function updateBoard() {
     });
 }
 
-updateBoard(); // Initial call to display the board
+updateBoard(); // Appel initial pour afficher le tableau
 
 modeSelect.addEventListener('change', () => {
     game.mode = modeSelect.value;
@@ -155,4 +155,4 @@ function updateBoard() {
     });
 }
 
-updateBoard(); // Initial call to display the board
+updateBoard(); // Appel initial pour afficher le tableau
