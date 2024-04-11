@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morpion</title>
+    <link rel="stylesheet" href="../assets/css/morpion.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cell {
+            width: 60px;
+            height: 60px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        #mode-options {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #mode-options label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="reset">Nouveau jeu</button>
+    <div id="mode-options">
+        <label for="mode">Mode:</label>
+        <select id="mode">
+            <option value="computer">Ordinateur</option>
+            <option value="local">Local</option>
+        </select>
+    </div>
+    <div id="board"></div>
+    <script src="../assets/js/morpion.js"></script>
+</body>
+</html>
