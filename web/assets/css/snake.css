@@ -55,3 +55,36 @@ canvas {
     background: url('image fond.png') no-repeat center center;
     background-size: cover;
 }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #282c34;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  canvas { 
+    background-color: #000; 
+    display: block; 
+    margin-bottom: 20px;
+    border: 4px solid #FFF;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
