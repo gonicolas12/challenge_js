@@ -12,18 +12,6 @@ body {
     color: #FFD700;
 }
 
-#startButton {
-    font-family: 'Press Start 2P', cursive;
-    background-color: #333;
-    color: #FFD700;
-    border: 2px solid #FFD700;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: -1px;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
 #menuButton {
     font-family: 'Press Start 2P', cursive;
     background-color: #333;
@@ -34,32 +22,6 @@ body {
     cursor: pointer;
     margin-top: 20px;
     transition: transform 0.2s ease, background-color 0.3s ease;  
-}
-
-#musicButton {
-  position: absolute;
-  font-size: 32px;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  color: #FFD700;
-}
-
-#musicButton.off::before {
-  content: "";
-  position: absolute;
-  width: 50px;
-  height: 2px;
-  background-color: #FFD700;
-  transform: rotate(45deg);
 }
 
 #startButton:hover, #menuButton:hover {
@@ -79,23 +41,6 @@ body {
     grid-template-columns: repeat(4, 50px);
     gap: 5px;
     margin-bottom: 20px;
-}
-
-#homeButton {
-    position: absolute;
-    font-size: 32px;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    color: #FFD700;
 }
 
 .square {
