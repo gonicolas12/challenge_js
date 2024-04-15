@@ -7,6 +7,33 @@ body, html {
     color: #fff;
 }
 
+#musicButton {
+    position: absolute;
+    font-size: 32px;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: #FFD700;
+    z-index: 2;
+  }
+  
+  #musicButton.off::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background-color: #FFD700;
+    transform: rotate(45deg);
+  }  
+
 /* Styles pour le canvas */
 canvas#snakeCanvas {
     position: fixed;
