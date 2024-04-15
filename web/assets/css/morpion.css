@@ -57,3 +57,59 @@ button {
     font-family:  'Press Start 2P', cursive;
     margin-right: 10px;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px;
+    padding: 10px 24px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 60px;
+    height: 60px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#mode-options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#mode-options label {
+    margin-right: 10px;
+}
