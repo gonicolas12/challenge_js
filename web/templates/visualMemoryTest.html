@@ -10,7 +10,14 @@
 <body>
     <a href="http://localhost:8080/" id="homeButton" title="Accueil">
         <i class="fas fa-home"></i>
-    </a>       
+    </a>
+    <audio id="backgroundMusic" loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>          
+    <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+    </a>
     <div id="modeSelection">
         <label class="radio-container">Classique
           <input type="radio" checked="checked" name="mode" value="classique">
@@ -20,12 +27,13 @@
           <input type="radio" name="mode" value="exponentiel">
           <span class="checkmark"></span>
         </label>
-      </div>      
-<div id="message"></div>
-<div id="grid"></div>
-<div id="levelCounter">Niveau: 1</div>
-<button id="startButton">Commencer le test</button>
-<button id="menuButton" style="display:none;">Revenir au menu</button>
-<script src="../assets/js/visualMemoryTest.js"></script>
+    </div>
+    <div id="message"></div>
+    <div id="grid"></div>
+    <div id="levelCounter">Niveau: 1</div>
+    <button id="startButton">Commencer le test</button>
+    <button id="menuButton" style="display:none;">Revenir au menu</button>
+    <script src="../assets/js/visualMemoryTest.js"></script>
+    <script src="../assets/js/musicButton.js"></script>
 </body>
 </html>

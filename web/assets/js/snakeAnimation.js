@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const snakeColors = ['#347C2C', '#806517', '#8C7853', '#FFFFFF']; // verts, marrons, et blanc
+    const snakeColors = ['#347C2C', '#806517', '#8C7853']; // verts, marrons, et blanc
 
     class Snake {
         constructor() {
