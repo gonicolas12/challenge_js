@@ -1,22 +1,27 @@
 let canvas = document.getElementById('snakeGame');
 let ctx = canvas.getContext('2d');
 const box = 20;
-let snake = [];
+let snake = [{ x: 9 * box, y: 10 * box }]; // Position initiale du serpent
 let score = 0;
-let d;
+let d; // direction
 let game;
 let food;
+
 let appleImg = new Image();
 appleImg.src = '../assets/img/PommeSnake.png';
 let snakeImg = new Image();
 snakeImg.src = '../assets/img/TeteSerpent.png';
+
 function createFood() {
-  food = { x: Math.floor(Math.random() * (canvas.width / box - 1) + 1) * box, y: Math.floor(Math.random() * (canvas.height / box - 1) + 1) * box };
+  food = {
+    x: Math.floor(Math.random() * (canvas.width / box - 1) + 1) * box,
+    y: Math.floor(Math.random() * (canvas.height / box - 1) + 1) * box
+  };
 }
 
 function collision(head, array) {
   for (let i = 0; i < array.length; i++) {
-    if (head.x == array[i].x && head.y == array[i].y) {
+    if (head.x === array[i].x && head.y === array[i].y) {
       return true;
     }
   }
@@ -26,7 +31,8 @@ function collision(head, array) {
 function draw() {
   ctx.fillStyle = "#282c34";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < snake.length; i++) {
+
+  for (let i = 1; i < snake.length; i++) {
     ctx.drawImage(snakeImg, snake[i].x, snake[i].y, box, box);
   }
 
@@ -35,12 +41,12 @@ function draw() {
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
 
-  if (d == "LEFT") snakeX -= box;
-  if (d == "UP") snakeY -= box;
-  if (d == "RIGHT") snakeX += box;
-  if (d == "DOWN") snakeY += box;
+  if (d === "LEFT") snakeX -= box;
+  if (d === "UP") snakeY -= box;
+  if (d === "RIGHT") snakeX += box;
+  if (d === "DOWN") snakeY += box;
 
-  if (snakeX == food.x && snakeY == food.y) {
+  if (snakeX === food.x && snakeY === food.y) {
     score++;
     createFood();
   } else {
@@ -56,6 +62,17 @@ function draw() {
   }
 
   snake.unshift(newHead);
+
+  ctx.save();
+  ctx.translate(snake[0].x + box / 2, snake[0].y + box / 2);
+
+  if (d === "LEFT") ctx.rotate(Math.PI);
+  else if (d === "UP") ctx.rotate(-Math.PI / 2);
+  else if (d === "RIGHT") ctx.rotate(0);
+  else if (d === "DOWN") ctx.rotate(Math.PI / 2);
+
+  ctx.drawImage(snakeImg, -box / 2, -box / 2, box, box);
+  ctx.restore();
 
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
@@ -73,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   let imagesLoaded = 0;
-
   appleImg.onload = snakeImg.onload = () => {
     imagesLoaded++;
     if (imagesLoaded === 2) {
@@ -83,10 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 });
 
-document.addEventListener("keydown", direction);
-function direction(event) {
-  if (event.keyCode == 37 && d != "RIGHT") d = "LEFT";
-  else if (event.keyCode == 38 && d != "DOWN") d = "UP";
-  else if (event.keyCode == 39 && d != "LEFT") d = "RIGHT";
-  else if (event.keyCode == 40 && d != "UP") d = "DOWN";
-}
+document.addEventListener("keydown", function(event) {
+  if (event.keyCode === 37 && d !== "RIGHT") d = "LEFT";
+  else if (event.keyCode === 38 && d !== "DOWN") d = "UP";
+  else if (event.keyCode === 39 && d !== "LEFT") d = "RIGHT";
+  else if (event.keyCode === 40 && d !== "UP") d = "DOWN";
+});
