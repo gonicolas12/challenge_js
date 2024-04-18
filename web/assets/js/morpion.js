@@ -13,7 +13,7 @@ class Morpion {
             this.winner = this.player;
         }
         this.player = this.player === 'X' ? 'O' : 'X';
-        this.nextMove(); // Vérification de la fin du jeu après chaque action
+        this.nextMove(); // Vérifier de la fin du jeu après chaque action
     }
 
     checkWin() {
@@ -84,15 +84,13 @@ class Morpion {
     }
 
     checkEndGame() {
-        if (this.winner || !this.board.includes(null)) {
-            setTimeout(() => {
-                let result = this.winner ? `Game over! The winner is ${this.winner}` : "Game over! It's a draw";
-                alert(result);
-                let playAgain = confirm("Do you want to play again?");
-                if (playAgain) {
-                    this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
-                }
-            }, 100); // Retarder l'alerte de 100 millisecondes
+        let resultElement = document.getElementById('result'); // Obtenir l'élément du résultat
+        if (this.winner) {
+            resultElement.textContent = `Jeu terminé! Le gagnant est ${this.winner}`; // Mettre à jour le texte du résultat
+            this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
+        } else if (!this.board.includes(null)) {
+            resultElement.textContent = "Jeu terminé! C'est un match nul"; // Mettre à jour le texte du résultat
+            this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
         }
     }
     
@@ -133,24 +131,4 @@ function updateBoard() {
     });
 }
 
-updateBoard(); // Appel initial pour afficher le tableau
-
-modeSelect.addEventListener('change', () => {
-    game.mode = modeSelect.value;
-});
-
-function updateBoard() {
-    boardElement.innerHTML = '';
-    game.board.forEach((cell, index) => {
-        let cellElement = document.createElement('div');
-        cellElement.innerHTML = cell || '';
-        cellElement.classList.add('cell');
-        cellElement.addEventListener('click', () => {
-            game.play(index);
-            updateBoard();
-        });
-        boardElement.appendChild(cellElement);
-    });
-}
-
-updateBoard(); // Appel initial pour afficher le tableau
+updateBoard();
