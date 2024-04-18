@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tri à Bulle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+    <link rel="stylesheet" href="../assets/css/triBulle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="http://localhost:8080/" id="homeButton" title="Accueil">
+        <i class="fas fa-home"></i>
+    </a>
+    <audio id="backgroundMusic" loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>          
+    <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+    </a>
+    <div id="array-container"></div>
+    <button id="menuButton" onclick="startSorting()">Commencer le Tri</button>
+    <button id="newSortButton" style="display: none;" onclick="startNewSort()">Charger des nouveaux chiffres</button>
+    <div id="status" class="message"></div>
+    <script src="../assets/js/triBulle.js"></script>
+    <script src="../assets/js/musicButton.js"></script>
+</body>
+</html>

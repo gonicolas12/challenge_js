@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #0a0a0a;
+    color: #FFD700;
+}
+
+#menuButton, #newSortButton {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #333;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#menuButton:hover, #newSortButton:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+#array-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.bar {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    width: 30px;
+    background-color: #FFD700;
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: #0a0a0a;
+    font-weight: bold;
+    border: 1px solid #999;
+    border-top-left-radius: 5px;   /* Arrondir les coins en haut à gauche */
+    border-top-right-radius: 5px;  /* Arrondir les coins en haut à droite */
+    transition: height 0.3s ease; /* Transition fluide pour la hauteur */
+}
+
+.message {
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    margin-top: 20px;
+}
