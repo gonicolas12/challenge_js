@@ -4,7 +4,7 @@ function generateRandomArray(numElements = 20) {
     const arr = [];
     // génère un tableau de numElements éléments avec des valeurs aléatoires entre 5 et 100
     for (let i = 0; i < numElements; i++) {
-        arr.push(Math.floor(Math.random() * (100 - 5 + 1)) + 5);
+        arr.push(Math.floor(Math.random() * (100 - 5 + 1)) + 5); // Math.floor arrondit à l'entier inférieur
     }
     return arr;
 }
