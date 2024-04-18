@@ -84,20 +84,18 @@ class Morpion {
     }
 
     checkEndGame() {
-        if (this.winner) {
-            alert(`Game over! The winner is ${this.winner}`);
-            let playAgain = confirm("Do you want to play again?");
-            if (playAgain) {
-                this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
-            }
-        } else if (!this.board.includes(null)) {
-            alert("Game over! It's a draw");
-            let playAgain = confirm("Do you want to play again?");
-            if (playAgain) {
-                this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
-            }
+        if (this.winner || !this.board.includes(null)) {
+            setTimeout(() => {
+                let result = this.winner ? `Game over! The winner is ${this.winner}` : "Game over! It's a draw";
+                alert(result);
+                let playAgain = confirm("Do you want to play again?");
+                if (playAgain) {
+                    this.reset(this.player, this.mode); // Garder le même utilisateur et le même mode
+                }
+            }, 100); // Retarder l'alerte de 100 millisecondes
         }
     }
+    
 
     reset(firstPlayer = 'X', mode = 'computer') {
         this.board = Array(9).fill(null);
