@@ -1,7 +1,8 @@
 let initialArray = []; // Variable globale pour stocker le tableau initial
 
-function generateRandomArray(numElements = 30) {
+function generateRandomArray(numElements = 20) {
     const arr = [];
+    // génère un tableau de numElements éléments avec des valeurs aléatoires entre 5 et 100
     for (let i = 0; i < numElements; i++) {
         arr.push(Math.floor(Math.random() * (100 - 5 + 1)) + 5);
     }
@@ -10,7 +11,7 @@ function generateRandomArray(numElements = 30) {
 
 function drawArray(arr) {
     const container = document.getElementById('array-container');
-    container.innerHTML = '';
+    container.innerHTML = ''; // efface le contenu actuel du conteneur
     arr.forEach(value => {
         const bar = document.createElement('div');
         bar.style.height = `${value * 3}px`;
@@ -30,10 +31,11 @@ async function bubbleSort(arr) {
     let newBtn = document.getElementById('newSortButton');
     let status = document.getElementById('status');
     status.textContent = "";
-    btn.disabled = true; // Disable the start button during sorting
+    btn.disabled = true;
 
     for (let i = 0; i < n-1; i++) {
         for (let j = 0; j < n-i-1; j++) {
+            // comparaison de deux éléments
             if (arr[j] > arr[j + 1]) {
                 [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
                 drawArray(arr);
@@ -42,8 +44,8 @@ async function bubbleSort(arr) {
         }
     }
     status.textContent = "Tri terminé !";
-    btn.style.display = "none"; // Hide the start button
-    newBtn.style.display = "inline"; // Show the new sort button
+    btn.style.display = "none";
+    newBtn.style.display = "inline";
     btn.disabled = false;
 }
 
@@ -55,9 +57,9 @@ function startSorting() {
 function startNewSort() {
     initialArray = generateRandomArray();
     drawArray(initialArray);
-    document.getElementById('menuButton').style.display = "inline"; // Show the start button again
-    document.getElementById('newSortButton').style.display = "none"; // Hide the new sort button
-    document.getElementById('status').textContent = ""; // Clear the status message
+    document.getElementById('menuButton').style.display = "inline"; // affiche le bouton de tri
+    document.getElementById('newSortButton').style.display = "none"; // cache le bouton de nouveau tri
+    document.getElementById('status').textContent = ""; // efface le message de statut
 }
 
 window.onload = () => {

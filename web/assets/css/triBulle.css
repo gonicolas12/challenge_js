@@ -50,7 +50,7 @@ body {
     border: 1px solid #999;
     border-top-left-radius: 5px;   /* Arrondir les coins en haut à gauche */
     border-top-right-radius: 5px;  /* Arrondir les coins en haut à droite */
-    transition: height 0.3s ease; /* Transition fluide pour la hauteur */
+    transition: height 0.3s ease;
 }
 
 .message {
