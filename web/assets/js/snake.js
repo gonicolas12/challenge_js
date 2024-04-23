@@ -2,45 +2,50 @@ const canvas = document.getElementById('snakeGame');
 const ctx = canvas.getContext('2d');
 const box = 20;
 let snake = [];
-snake[0] = { x: 9 * box, y: 10 * box };
-let food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
-let score = 0;
+let food;
+let score;
 let d;
+let game;
+let currentDifficulty = 'medium';
+let eatEffect = false;
 
-let snakeHeadImg = new Image();
-snakeHeadImg.onload = function() { draw(); }
-snakeHeadImg.src = '../img/CorpsSerpent.png';
-let snakeBodyImg = new Image();
-snakeBodyImg.src = '../img/CorpsSerpent.png';
-let fruitImg = new Image();
-fruitImg.src = '../img/PommeSnake.png';
-
-document.addEventListener("keydown", direction);
-function direction(event) {
-    if (event.keyCode == 37 && d != "RIGHT") d = "LEFT";
-    else if (event.keyCode == 38 && d != "DOWN") d = "UP";
-    else if (event.keyCode == 39 && d != "LEFT") d = "RIGHT";
-    else if (event.keyCode == 40 && d != "UP") d = "DOWN";
-}
-
-function collision(head, array) {
-    for (let i = 0; i < array.length; i++) {
-        if (head.x == array[i].x && head.y == array[i].y) return true;
-    }
-    return false;
+function setupGame(difficulty) {
+    currentDifficulty = difficulty;
+    snake = [];
+    snake[0] = { x: 9 * box, y: 10 * box };
+    food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
+    score = 0;
+    d = null;
+    if (game) clearInterval(game);
+    let speed = 100;
+    if (difficulty === 'easy') speed = 150;
+    else if (difficulty === 'medium') speed = 100;
+    else if (difficulty === 'hard') speed = 50;
+    game = setInterval(draw, speed);
+    document.getElementById('snakeGame').style.display = 'block';
+    document.getElementById('difficultySelection').style.display = 'none';
+    document.getElementById('restartButton').style.display = 'none';
+    document.getElementById('backToDifficultyButton').style.display = 'block';
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     for (let i = 0; i < snake.length; i++) {
-        let img = (i == 0) ? snakeHeadImg : snakeBodyImg;
-        ctx.drawImage(img, snake[i].x, snake[i].y, box, box);
+        let gradient = ctx.createLinearGradient(snake[i].x, snake[i].y, snake[i].x + box, snake[i].y + box);
+        gradient.addColorStop(0, i == 0 && eatEffect ? "yellow" : "lime");
+        gradient.addColorStop(1, i == 0 && eatEffect ? "green" : "darkgreen");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(snake[i].x, snake[i].y, box, box);
+        ctx.strokeStyle = "darkslategray";
+        ctx.strokeRect(snake[i].x, snake[i].y, box, box);
     }
-
-    ctx.drawImage(fruitImg, food.x, food.y, box, box);
+    let foodGradient = ctx.createRadialGradient(food.x + box/2, food.y + box/2, 1, food.x + box/2, food.y + box/2, box/2);
+    foodGradient.addColorStop(0, "orange");
+    foodGradient.addColorStop(1, "red");
+    ctx.fillStyle = foodGradient;
+    ctx.fillRect(food.x, food.y, box, box);
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
@@ -52,32 +57,57 @@ function draw() {
 
     if (snakeX == food.x && snakeY == food.y) {
         score++;
+        eatEffect = true;
+        setTimeout(() => { eatEffect = false; }, 100);
         food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
-        document.getElementById('scoreVal').innerText = 'Score: ' + score;
     } else {
         snake.pop();
     }
 
     let newHead = { x: snakeX, y: snakeY };
-
     if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
         clearInterval(game);
-        alert('Game Over. Score: ' + score);
         document.getElementById('restartButton').style.display = 'block';
+        alert("Game Over. Score: " + score);
     }
 
-    snake.unshift(newHead);
+    if (!collision(newHead, snake)) {
+        snake.unshift(newHead);
+    }
+
+    ctx.fillStyle = "white";
+    ctx.font = "20px Roboto";
+    ctx.fillText(`Score: ${score}`, canvas.width - 120, 30);
 }
 
-let game = setInterval(draw, 100);
-
 document.getElementById('restartButton').addEventListener('click', function() {
-    snake = [{ x: 9 * box, y: 10 * box }];
-    score = 0;
-    document.getElementById('scoreVal').innerText = 'Score: ' + score;
-    d = undefined;
-    food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
-    this.style.display = 'none';
-    clearInterval(game);
-    game = setInterval(draw, 100);
+    setupGame(currentDifficulty);
 });
+
+document.getElementById('backToDifficultyButton').addEventListener('click', function() {
+    document.getElementById('snakeGame').style.display = 'none';
+    document.getElementById('difficultySelection').style.display = 'block';
+    document.getElementById('restartButton').style.display = 'none';
+    document.getElementById('backToDifficultyButton').style.display = 'none';
+    clearInterval(game);
+});
+
+document.addEventListener("keydown", direction);
+function direction(event) {
+    let key = event.keyCode;
+    if (key == 37 && d != "RIGHT") d = "LEFT";
+    else if (key == 38 && d != "DOWN") d = "UP";
+    else if (key == 39 && d != "LEFT") d = "RIGHT";
+    else if (key == 40 && d != "UP") d = "DOWN";
+}
+
+function collision(head, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (head.x == array[i].x && head.y == array[i].y) return true;
+    }
+    return false;
+}
+
+function startGame(difficulty) {
+    setupGame(difficulty);
+}
