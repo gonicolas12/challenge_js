@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Jeu du Serpent</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Jeu du Serpent</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<canvas id="snakeGame" width="400" height="400"></canvas>
-<button id="replayButton">Rejouer</button>
-<script src="../assets/js/snake.js"></script>
+    <div id="difficultySelection">
+        <button onclick="startGame('easy')">Facile</button>
+        <button onclick="startGame('medium')">Moyen</button>
+        <button onclick="startGame('hard')">Difficile</button>
+    </div>
+    <canvas id="snakeGame" width="400" height="400" style="display:none;"></canvas>
+    <button id="restartButton" style="display: none; margin: 20px auto; display: block;">Rejouer</button>
+    <button id="backToDifficultyButton" style="display: none; margin: 20px auto; display: block;">Choisir Difficulté</button>
+    <script src="../assets/js/snake.js"></script>
 </body>
 </html>
+
