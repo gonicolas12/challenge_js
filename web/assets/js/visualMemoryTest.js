@@ -57,21 +57,18 @@ function randomizeSquares(numberOfSquares) {
 }
 
 function checkSquare(square, index) {
-    if (square.style.backgroundColor === 'green') {
-      return;
-    }
-  
-    if (correctSquares.includes(index)) {
-      square.style.backgroundColor = 'green';
+  if (correctSquares.includes(index)) {
+      square.style.backgroundColor = '#FFD700'; // Applique la couleur jaune quand correct
+      square.classList.add('validated'); // Optionnel: ajouter une classe pour gérer via CSS
       correctSquares = correctSquares.filter(item => item !== index);
       if (correctSquares.length === 0) {
-        showSuccess();
+          showSuccess();
       }
-    } else {
-      square.style.backgroundColor = 'red';
+  } else {
+      square.style.backgroundColor = 'red'; // Laisse rouge si incorrect
       showFailure();
-    }
-}  
+  }
+}
 
 function showSuccess() {
     grid.style.display = 'none';

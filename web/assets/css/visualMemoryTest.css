@@ -126,3 +126,37 @@ body {
     border-radius: 50%;
     background: #0a0a0a;
   }
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    grid-row-gap: 10px;
+    grid-column-gap: 30px;
+    margin-bottom: 20px;
+}
+
+.square {
+    width: 70px;
+    height: 70px;
+    background-color: #0a0a0a;
+    border: 2px solid #FFD700;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    margin: 1px;
+}
+
+.square.on {
+    background-color: #FFD700;
+}
+
+.square:hover {
+    background-color: #FFDF70;
+}
+
+.square.error {
+    background-color: red;
+}
+
+.square.validated {
+    background-color: #FFD700;
+}
