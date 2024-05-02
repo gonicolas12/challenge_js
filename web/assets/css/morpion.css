@@ -5,6 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
     background-color: #0a0a0a;
     font-family: Arial, sans-serif;
 }
@@ -39,7 +40,7 @@ body {
     transform: rotateY(180deg);
 }
 
-button {
+.button {
     font-family: 'Press Start 2P', cursive;
     padding: 10px 20px;
     margin-right: 10px;
@@ -48,6 +49,7 @@ button {
     cursor: pointer;
     color: #FFD700;
     background-color: #333;
+    text-decoration: none;
 }
 
 #mode-options {
@@ -68,12 +70,14 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
-}
+}x
 .button {
     font-family: 'Press Start 2P', cursive;
     font-size: 15px;
     padding: 10px 24px;
+    text-decoration: none;
 }
 
 body {
@@ -132,3 +136,65 @@ button {
     color: #FFD700;
     background-color: #333;
 }
+
+.radio-container {
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #FFD700;
+    text-align: left;
+  }
+  
+  /* Cacher le cercle bleu d'origine */
+  .radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Création du cercle personnalisé */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 1px solid #FFD700;
+  }
+  
+  /* Lorsque l'utilisateur coche le bouton radio */
+  .radio-container input:checked ~ .checkmark {
+    background-color: #FFD700;
+  }
+  
+  /* Style du cercle intérieur */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Affichage du cercle intérieur quand le bouton radio est coché */
+  .radio-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style du cercle intérieur */
+  .radio-container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0a0a0a;
+  }
