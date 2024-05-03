@@ -72,22 +72,12 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
-}x
+}
 .button {
     font-family: 'Press Start 2P', cursive;
     font-size: 15px;
     padding: 10px 24px;
     text-decoration: none;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #0a0a0a;
-    font-family: Arial, sans-serif;
-    flex-direction: column; /* Ajouté pour organiser les éléments en colonne */
 }
 
 #board {
