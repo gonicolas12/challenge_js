@@ -21,15 +21,17 @@ body {
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
-    transition: transform 0.2s ease, background-color 0.3s ease;  
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-#startButton:hover, #menuButton:hover {
+#startButton:hover,
+#menuButton:hover {
     background-color: #555;
     transform: scale(1.05);
 }
 
-#levelCounter, #modeSelection {
+#levelCounter,
+#modeSelection {
     font-family: 'Press Start 2P', cursive;
     color: #FFD700;
     margin-bottom: 20px;
@@ -79,17 +81,17 @@ body {
     user-select: none;
     color: #FFD700;
     text-align: left;
-  }
-  
-  /* Cacher le cercle bleu d'origine */
-  .radio-container input {
+}
+
+/* Cacher le cercle bleu d'origine */
+.radio-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-  }
-  
-  /* Création du cercle personnalisé */
-  .checkmark {
+}
+
+/* Création du cercle personnalisé */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -98,34 +100,32 @@ body {
     background-color: #0a0a0a;
     border-radius: 50%;
     border: 1px solid #FFD700;
-  }
-  
-  /* Lorsque l'utilisateur coche le bouton radio */
-  .radio-container input:checked ~ .checkmark {
+}
+
+.radio-container input:checked~.checkmark {
     background-color: #FFD700;
-  }
-  
-  /* Style du cercle intérieur */
-  .checkmark:after {
+}
+
+/* Style du cercle intérieur */
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Affichage du cercle intérieur quand le bouton radio est coché */
-  .radio-container input:checked ~ .checkmark:after {
+}
+
+.radio-container input:checked~.checkmark:after {
     display: block;
-  }
-  
-  /* Style du cercle intérieur */
-  .radio-container .checkmark:after {
+}
+
+/* Style du cercle intérieur */
+.radio-container .checkmark:after {
     top: 9px;
     left: 9px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: #0a0a0a;
-  }
+}
 
 #grid {
     display: grid;
