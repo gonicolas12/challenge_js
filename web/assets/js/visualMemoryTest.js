@@ -1,3 +1,4 @@
+// Const
 const levelCounter = document.getElementById('levelCounter');
 const startButton = document.getElementById('startButton');
 const menuButton = document.getElementById('menuButton');
@@ -6,6 +7,8 @@ const grid = document.getElementById('grid');
 const modeSelection = document.getElementById('modeSelection');
 const timeReductionPerLevel = 200;
 const baseDisplayTime = 2000;
+
+// Variables
 let displayTime = 2000;
 let currentLevel = 1;
 let correctSquares = [];
@@ -23,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });  
 
+
+// Fonctions
 function updateLevelDisplay() {
   levelCounter.textContent = `Niveau: ${currentLevel}`;
 }
