@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../assets/css/visualMemoryTest.css">
     <link rel="stylesheet" href="../assets/css/buttons.css">
 </head>
+
 <body>
     <a href="http://localhost:8080/" id="homeButton" title="Accueil">
         <i class="fas fa-home"></i>
@@ -15,18 +17,18 @@
     <audio id="backgroundMusic" loop>
         <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
         Votre navigateur ne supporte pas l'élément audio.
-    </audio>          
+    </audio>
     <a href="#" id="musicButton" title="Activer/Désactiver la musique">
         <i class="fas fa-music"></i>
     </a>
     <div id="modeSelection">
         <label class="radio-container">Classique
-          <input type="radio" checked="checked" name="mode" value="classique">
-          <span class="checkmark"></span>
+            <input type="radio" checked="checked" name="mode" value="classique">
+            <span class="checkmark"></span>
         </label>
         <label class="radio-container">Exponentiel
-          <input type="radio" name="mode" value="exponentiel">
-          <span class="checkmark"></span>
+            <input type="radio" name="mode" value="exponentiel">
+            <span class="checkmark"></span>
         </label>
     </div>
     <div id="message"></div>
@@ -37,4 +39,5 @@
     <script src="../assets/js/visualMemoryTest.js"></script>
     <script src="../assets/js/musicButton.js"></script>
 </body>
+
 </html>
