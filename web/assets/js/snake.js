@@ -81,7 +81,7 @@ function draw() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < snake.length; i++) {
         let gradient = ctx.createLinearGradient(snake[i].x, snake[i].y, snake[i].x + box, snake[i].y + box);
-        gradient.addColorStop(0, "yellow");
+        gradient.addColorStop(0, "#FFD700");
         gradient.addColorStop(1, "gold");
         ctx.fillStyle = gradient;
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
@@ -147,7 +147,7 @@ function displayScore() {
     if (gameCanvas.style.display === 'block') {
         scoreBoard.textContent = `Score : ${score}`;
         scoreBoard.style.display = 'block';
-        scoreBoard.style.color = 'yellow';
+        scoreBoard.style.color = '#FFD700';
         scoreBoard.style.fontSize = '20px';
         scoreBoard.style.position = 'absolute';
         scoreBoard.style.top = '10px';

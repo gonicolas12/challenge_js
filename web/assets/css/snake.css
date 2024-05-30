@@ -105,7 +105,7 @@ button:hover {
 }
 
 #snakeGame {
-    border: 2px solid yellow;
+    border: 2px solid #FFD700;
 }
 
 #scoreBoard {
