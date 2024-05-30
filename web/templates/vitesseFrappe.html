@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitesse de Frappe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/vitesseFrappe.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+</head>
+ 
+<body>
+    <a href="http://localhost:8080/" id="homeButton" title="Accueil">
+        <i class="fas fa-home"></i>
+    </a>
+    <audio id="backgroundMusic" loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+    </a>
+    <div id="typing-test">
+        <div id="test-area">
+            <p id="source-text"></p>
+            <textarea id="type-input" rows="6" autofocus></textarea>
+            <p id="timer">00:60</p>
+            <button id="reset-button">Réinitialiser</button>
+        </div>
+        <div id="results">
+            <p id="words-per-minute">Mots par minute : 0</p>
+            <p id="accuracy">Précision : 100%</p>
+        </div>
+    </div>
+    <script src="../assets/js/vitesseFrappe.js"></script>
+    <script src="../assets/js/musicButton.js"></script>
+</body>
+ 
+</html>
