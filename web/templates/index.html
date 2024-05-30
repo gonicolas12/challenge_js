@@ -4,23 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil des Jeux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
 </head>
 <body>
-    <audio autoplay loop>
+    <audio id="backgroundMusic" loop>
         <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
-    </audio>    
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+    </a>
     <canvas id="snakeCanvas"></canvas>
     <div class="container">
         <h1>Choisissez un jeu à jouer</h1>
         <div class="games-grid">
             <button class="game-button" onclick="location.href='./templates/snake.html'">Snake</button>
-            <button class="game-button" onclick="location.href='./templates/morpion.html'">Morpion</button>
+            <button class="game-button" onclick="location.href='./templates/mode.html'">Morpion</button>
             <button class="game-button" onclick="location.href='./templates/vitesseFrappe.html'">Vitesse de Frappe</button>
             <button class="game-button" onclick="location.href='./templates/visualMemoryTest.html'">Mémoire Visuelle</button>
         </div>
-        <button class="game-button centered" onclick="location.href='triBulle.html'">Tri à Bulle</button>
+        <button class="game-button centered" onclick="location.href='./templates/triBulle.html'">Tri à Bulle</button>
     </div>
     <script src="../assets/js/snakeAnimation.js"></script>
+    <script src="../assets/js/musicButton.js"></script>
 </body>
 </html>

@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #0a0a0a;
+    color: #FFD700;
+}
+
+#menuButton {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #333;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#startButton:hover,
+#menuButton:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+#levelCounter,
+#modeSelection {
+    font-family: 'Press Start 2P', cursive;
+    color: #FFD700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border: 1px solid #999;
+}
+
+.square.on {
+    background-color: #76B947;
+}
+
+.message {
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 24px;
+    width: 200px;
+    text-align: center;
+    height: 20px;
+    color: #FFD700;
+}
+
+.radio-container {
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #FFD700;
+    text-align: left;
+}
+
+/* Cacher le cercle bleu d'origine */
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Création du cercle personnalisé */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #0a0a0a;
+    border-radius: 50%;
+    border: 1px solid #FFD700;
+}
+
+.radio-container input:checked~.checkmark {
+    background-color: #FFD700;
+}
+
+/* Style du cercle intérieur */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio-container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style du cercle intérieur */
+.radio-container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0a0a0a;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    grid-row-gap: 10px;
+    grid-column-gap: 30px;
+    margin-bottom: 20px;
+}
+
+.square {
+    width: 70px;
+    height: 70px;
+    background-color: #0a0a0a;
+    border: 2px solid #FFD700;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    margin: 1px;
+}
+
+.square.on {
+    background-color: #FFD700;
+}
+
+.square:hover {
+    background-color: #FFDF70;
+}
+
+.square.error {
+    background-color: red;
+}
+
+.square.validated {
+    background-color: #FFD700;
+}
