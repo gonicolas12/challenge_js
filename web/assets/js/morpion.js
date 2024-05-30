@@ -86,10 +86,8 @@ class Morpion {
     checkEndGame() {
         let resultElement = document.getElementById('result');
         if (this.winner) {
-            resultElement.textContent = `Jeu terminé! Le gagnant est ${this.winner}`;
             this.displayResultMessage(`Le gagnant est ${this.winner}`);
         } else if (!this.board.includes(null)) {
-            resultElement.textContent = "Jeu terminé! C'est un match nul";
             this.displayResultMessage("C'est un match nul");
         }
     }
@@ -99,39 +97,20 @@ class Morpion {
         resultMessageElement.textContent = message;
     }
 
-    reset(firstPlayer = 'X', mode = 'computer') {
-        this.board = Array(9).fill(null);
-        this.player = firstPlayer;
-        this.winner = null;
-        this.mode = mode;
-        this.clearResultMessage();
-    }
-
     clearResultMessage() {
         let resultMessageElement = document.getElementById('resultMessage');
         resultMessageElement.textContent = '';
+        let resultElement = document.getElementById('result');
         resultElement.textContent = '';
     }
 }
 
 let game = new Morpion();
 let boardElement = document.getElementById('board');
-let resetButton = document.getElementById('reset');
-let modeSelect = document.getElementById('mode');
 let resultMessageElement = document.createElement('div');
 
 resultMessageElement.id = 'resultMessage';
 boardElement.parentNode.insertBefore(resultMessageElement, boardElement);
-
-resetButton.addEventListener('click', () => {
-    game.reset(game.player, game.mode);
-    game.clearResultMessage(); // Effacer le message de résultat lors du lancement d'un nouveau jeu
-    updateBoard();
-});
-
-modeSelect.addEventListener('change', () => {
-    game.mode = modeSelect.value;
-});
 
 function updateBoard() {
     boardElement.innerHTML = '';
