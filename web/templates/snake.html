@@ -6,9 +6,21 @@
     <title>Jeu du Serpent</title>
     <link rel="stylesheet" href="../assets/css/snake.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
+    <a href="http://localhost:8080/" id="homeButton" title="Accueil">
+        <i class="fas fa-home"></i>
+    </a>
+    <audio id="backgroundMusic" loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+    </a>
     <div id="difficultySelection">
         <button onclick="startGame('easy')">Facile</button>
         <button onclick="startGame('medium')">Moyen</button>
