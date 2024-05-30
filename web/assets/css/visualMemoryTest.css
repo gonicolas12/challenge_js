@@ -12,18 +12,6 @@ body {
     color: #FFD700;
 }
 
-#startButton {
-    font-family: 'Press Start 2P', cursive;
-    background-color: #333;
-    color: #FFD700;
-    border: 2px solid #FFD700;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: -1px;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
 #menuButton {
     font-family: 'Press Start 2P', cursive;
     background-color: #333;
@@ -33,41 +21,18 @@ body {
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
-    transition: transform 0.2s ease, background-color 0.3s ease;  
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-#musicButton {
-  position: absolute;
-  font-size: 32px;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  color: #FFD700;
-}
-
-#musicButton.off::before {
-  content: "";
-  position: absolute;
-  width: 50px;
-  height: 2px;
-  background-color: #FFD700;
-  transform: rotate(45deg);
-}
-
-#startButton:hover, #menuButton:hover {
+#startButton:hover,
+#menuButton:hover {
     background-color: #555;
     transform: scale(1.05);
 }
 
-#levelCounter, #modeSelection {
+#levelCounter,
+#modeSelection {
     font-family: 'Press Start 2P', cursive;
     color: #FFD700;
     margin-bottom: 20px;
@@ -79,23 +44,6 @@ body {
     grid-template-columns: repeat(4, 50px);
     gap: 5px;
     margin-bottom: 20px;
-}
-
-#homeButton {
-    position: absolute;
-    font-size: 32px;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    color: #FFD700;
 }
 
 .square {
@@ -134,50 +82,89 @@ body {
     user-select: none;
     color: #FFD700;
     text-align: left;
-  }
-  
-  /* Cacher le cercle bleu d'origine */
-  .radio-container input {
+}
+
+/* Cacher le cercle bleu d'origine */
+.radio-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-  }
-  
-  /* Création du cercle personnalisé */
-  .checkmark {
+}
+
+/* Création du cercle personnalisé */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    background-color: #0a0a0a;
+    background-color: #0a0a0a;
     border-radius: 50%;
     border: 1px solid #FFD700;
-  }
-  
-  /* Lorsque l'utilisateur coche le bouton radio */
-  .radio-container input:checked ~ .checkmark {
+}
+
+/* Lorsque l'utilisateur coche le bouton radio */
+.radio-container input:checked~.checkmark {
     background-color: #FFD700;
-  }
-  
-  /* Style du cercle intérieur */
-  .checkmark:after {
+}
+
+/* Style du cercle intérieur */
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Affichage du cercle intérieur quand le bouton radio est coché */
-  .radio-container input:checked ~ .checkmark:after {
+}
+
+/* Affichage du cercle intérieur quand le bouton radio est coché */
+.radio-container input:checked~.checkmark:after {
     display: block;
-  }
-  
-  /* Style du cercle intérieur */
-  .radio-container .checkmark:after {
+}
+
+/* Style du cercle intérieur */
+.radio-container .checkmark:after {
     top: 9px;
     left: 9px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: #0a0a0a;
-  }
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    grid-row-gap: 10px;
+    grid-column-gap: 30px;
+    margin-bottom: 20px;
+}
+
+.square {
+    width: 70px;
+    height: 70px;
+    background-color: #0a0a0a;
+    border: 2px solid #FFD700;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    margin: 1px;
+}
+
+.square.on {
+    background-color: #FFD700;
+}
+
+.square:hover {
+    background-color: #FFDF70;
+}
+
+.square.error {
+    background-color: red;
+}
+
+.square.validated {
+    background-color: #FFD700;
+}
+
+.no-click {
+    pointer-events: none;
+}

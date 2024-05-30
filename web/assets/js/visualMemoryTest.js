@@ -1,3 +1,4 @@
+// Const
 const levelCounter = document.getElementById('levelCounter');
 const startButton = document.getElementById('startButton');
 const menuButton = document.getElementById('menuButton');
@@ -6,6 +7,9 @@ const grid = document.getElementById('grid');
 const modeSelection = document.getElementById('modeSelection');
 const timeReductionPerLevel = 200;
 const baseDisplayTime = 2000;
+const minDisplayTime = 50; // temps minimal de visualisation en millisecondes
+
+// Variables
 let displayTime = 2000;
 let currentLevel = 1;
 let correctSquares = [];
@@ -15,14 +19,16 @@ let gridSize = 4;
 let attempts = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    levelCounter.style.display = 'none';
-    document.querySelectorAll('input[name="mode"]').forEach((radio) => { // sélectionne tous les boutons radio avec le nom "mode"
-      radio.addEventListener('change', function() {
-        gameMode = this.value;
-      });
+  levelCounter.style.display = 'none';
+  document.querySelectorAll('input[name="mode"]').forEach((radio) => { // sélectionne tous les boutons radio avec le nom "mode"
+    radio.addEventListener('change', function () {
+      gameMode = this.value;
     });
-});  
+  });
+});
 
+
+// Fonctions
 function updateLevelDisplay() {
   levelCounter.textContent = `Niveau: ${currentLevel}`;
 }
@@ -34,7 +40,7 @@ function createGrid(size) {
   for (let i = 0; i < size * size; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
-    square.addEventListener('click', function() {
+    square.addEventListener('click', function () {
       if (guessing) {
         checkSquare(this, i);
       }
@@ -57,52 +63,50 @@ function randomizeSquares(numberOfSquares) {
 }
 
 function checkSquare(square, index) {
-    if (square.style.backgroundColor === 'green') {
-      return;
+  if (correctSquares.includes(index)) {
+    square.style.backgroundColor = '#FFD700'; // couleur jaune quand correct
+    square.classList.add('validated', 'no-click'); // classe pour désactiver les clics
+    correctSquares = correctSquares.filter(item => item !== index);
+    if (correctSquares.length === 0) {
+      showSuccess();
     }
-  
-    if (correctSquares.includes(index)) {
-      square.style.backgroundColor = 'green';
-      correctSquares = correctSquares.filter(item => item !== index);
-      if (correctSquares.length === 0) {
-        showSuccess();
-      }
-    } else {
-      square.style.backgroundColor = 'red';
-      showFailure();
-    }
-}  
+  } else {
+    square.style.backgroundColor = 'red'; // rouge si incorrect
+    square.classList.add('no-click'); // classe pour désactiver les clics
+    showFailure();
+  }
+}
 
 function showSuccess() {
-    grid.style.display = 'none';
-    levelCounter.style.display = 'none';
-    messageDisplay.innerHTML = '<span class="message">Passage au niveau suivant...</span>';
-    startButton.style.display = 'none';
-    setTimeout(() => {
-      messageDisplay.innerHTML = '';
-      grid.style.display = 'grid';
-      levelCounter.style.display = 'block';
-      currentLevel++;
-      displayTime -= timeReductionPerLevel;
-      updateLevelDisplay();
-      startTest();
-    }, 2000);
+  grid.style.display = 'none';
+  levelCounter.style.display = 'none';
+  messageDisplay.innerHTML = '<span class="message">Passage au niveau suivant...</span>';
+  startButton.style.display = 'none';
+  setTimeout(() => {
+    messageDisplay.innerHTML = '';
+    grid.style.display = 'grid';
+    levelCounter.style.display = 'block';
+    currentLevel++;
+    displayTime = Math.max(displayTime - timeReductionPerLevel, minDisplayTime); // s'assure que le temps ne tombe pas en dessous du minimum
+    updateLevelDisplay();
+    startTest();
+  }, 2000);
 }
 
 function showFailure() {
-    guessing = false;
-    document.getElementById('message').innerHTML = '<span class="message">Perdu !</span>';
-    // affiche les carrés corrects en vert
-    for (let i = 0; i < grid.children.length; i++) {
-      if (correctSquares.includes(i)) {
-        grid.children[i].style.backgroundColor = 'green';
-        grid.children[i].classList.add('on');
-      }
+  guessing = false;
+  document.getElementById('message').innerHTML = '<span class="message">Perdu !</span>';
+  // affiche les carrés corrects en vert
+  for (let i = 0; i < grid.children.length; i++) {
+    if (correctSquares.includes(i)) {
+      grid.children[i].style.backgroundColor = 'green';
+      grid.children[i].classList.add('on');
     }
+  }
 
-    startButton.style.display = 'block';
-    startButton.innerText = 'Recommencer';
-    menuButton.style.display = 'block';
+  startButton.style.display = 'block';
+  startButton.innerText = 'Recommencer';
+  menuButton.style.display = 'block';
 }
 
 function startTest() {
@@ -141,10 +145,10 @@ function hideMenu() {
   modeSelection.style.display = 'none';
 }
 
-startButton.addEventListener('click', function() {
+startButton.addEventListener('click', function () {
   currentLevel = 1;
   displayTime = baseDisplayTime;
-  gridSize = 4; 
+  gridSize = 4;
   attempts = 0; // reinitialise le nombre de tentatives pour le mode exponentiel
   updateLevelDisplay();
   hideMenu();
@@ -153,15 +157,15 @@ startButton.addEventListener('click', function() {
 });
 
 menuButton.addEventListener('click', () => {
-    grid.style.display = 'none';
-    levelCounter.style.display = 'none';
-    messageDisplay.innerHTML = '';
-    startButton.style.display = 'block';
-    startButton.innerText = 'Commencer le test';
-    menuButton.style.display = 'none';
-    modeSelection.style.display = 'block';
+  grid.style.display = 'none';
+  levelCounter.style.display = 'none';
+  messageDisplay.innerHTML = '';
+  startButton.style.display = 'block';
+  startButton.innerText = 'Commencer le test';
+  menuButton.style.display = 'none';
+  modeSelection.style.display = 'block';
 });
 
-document.getElementById('startButton').addEventListener('click', function() {
+document.getElementById('startButton').addEventListener('click', function () {
   startTest();
 });

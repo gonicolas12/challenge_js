@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
-    background-color: rgba(0, 0, 0, 0); /* Fond transparent */
+    background-color: rgba(0, 0, 0, 0);
     color: #fff;
 }
 
@@ -23,16 +24,16 @@ body, html {
     text-decoration: none;
     color: #FFD700;
     z-index: 2;
-  }
-  
-  #musicButton.off::before {
+}
+
+#musicButton.off::before {
     content: "";
     position: absolute;
     width: 50px;
     height: 2px;
     background-color: #FFD700;
     transform: rotate(45deg);
-  }  
+}
 
 /* Styles pour le canvas */
 canvas#snakeCanvas {
@@ -42,18 +43,19 @@ canvas#snakeCanvas {
     width: 100%;
     height: 100%;
     background-color: #0a0a0a;
-    z-index: -1; /* Place le canvas en arrière-plan */
+    z-index: -1;
+    /* Place le canvas en arrière-plan */
 }
 
-/* Styles pour le contenu du menu */
 .container {
-    position: relative; /* Positionne le contenu par rapport à son conteneur parent */
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
-    z-index: 1; /* Place le contenu au-dessus du canvas */
+    z-index: 1;
+    /* Place le contenu au-dessus du canvas */
 }
 
 h1 {
@@ -73,7 +75,7 @@ h1 {
 .game-button {
     font-family: 'Press Start 2P', cursive;
     background-color: #333;
-    color: #fff;
+    color: #FFD700;
     border: 2px solid #FFD700;
     padding: 20px;
     cursor: pointer;

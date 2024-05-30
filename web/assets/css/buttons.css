@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
- 
+
 #startButton {
   font-family: 'Press Start 2P', cursive;
   background-color: #333;
@@ -11,7 +11,7 @@
   margin-top: -1px;
   transition: transform 0.2s ease, background-color 0.3s ease;
 }
- 
+
 #musicButton {
   position: absolute;
   font-size: 32px;
@@ -28,7 +28,7 @@
   text-decoration: none;
   color: #FFD700;
 }
- 
+
 #musicButton.off::before {
   content: "";
   position: absolute;

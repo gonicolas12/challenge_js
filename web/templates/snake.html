@@ -1,14 +1,47 @@
-P<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Jeu du Serpent</title>
     <link rel="stylesheet" href="../assets/css/snake.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
-<canvas id="snakeGame" width="400" height="400"></canvas>
-<div id="scoreVal">Score: 0</div>
-<div id="restartButton">Restart</div>
-<script src="../assets/js/snake.js"></script>
+    <a href="http://localhost:8080/" id="homeButton" title="Accueil">
+        <i class="fas fa-home"></i>
+    </a>
+    <audio id="backgroundMusic" loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+    </a>
+    <div id="difficultySelection">
+        <button onclick="startGame('easy')">Facile</button>
+        <button onclick="startGame('medium')">Moyen</button>
+        <button onclick="startGame('hard')">Difficile</button>
+        <button onclick="startGame('extreme')">Extrême</button>
+    </div>
+    <div id="gameOverMessage" class="hidden">
+        Partie terminée.
+    </div>
+
+    <div id="scoreBoard" class="hidden">
+        Score : 0
+    </div>
+
+    <canvas id="snakeGame" width="400" height="400" class="hidden"></canvas>
+
+    <button id="restartButton" class="hidden">Rejouer</button>
+    <button id="backToDifficultyButton" class="hidden">Choisir Difficulté</button>
+
+    <script src="../assets/js/snake.js"></script>
+    <script src="../assets/js/musicButton.js"></script>
 </body>
+
 </html>

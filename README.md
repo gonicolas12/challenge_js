@@ -37,26 +37,26 @@ Pour démarrer le projet de Suivi des Jeux, assurez-vous d'avoir un environnemen
 
 ### Installation et Exécution
 
-1. **Cloner le dépôt** avec la commande suivante :
+1. **Clonez le dépôt** avec la commande suivante :
 
    ```bash
    git clone https://github.com/gonicolas12/challenge_js.git
    cd challenge_js
    ```
 
-2. **Installer les dépendances** avec la commande suivante :
+2. **Installez les dépendances** avec la commande suivante :
 
    ```bash
    npm install express
    ```
 
-3. **Lancer le serveur** avec la commande suivante :
+3. **Lancez le serveur** avec la commande suivante :
 
    ```bash
    node cmd/main.js
    ```
 
-4. **Accéder à l'application** en ouvrant votre navigateur web sur ce lien -> http://localhost:8080.
+4. **Accédez à l'application** en ouvrant votre navigateur web sur ce lien -> http://localhost:8080.
 
 
 ### Auteurs :
