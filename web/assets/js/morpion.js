@@ -4,18 +4,53 @@ class Morpion {
         this.player = firstPlayer;
         this.winner = null;
         this.mode = mode;
+        this.boardElement = document.getElementById('board');
+        if (this.boardElement) {
+            this.initBoard(); // Initialise le tableau dès la création de l'instance
+        } else {
+            console.error("Board element not found!");
+        }
     }
-
+ 
+    initBoard() {
+        this.boardElement.innerHTML = ''; // Nettoie le tableau
+        this.board.forEach((cell, index) => {
+            let cellElement = document.createElement('div');
+            cellElement.classList.add('cell');
+            cellElement.addEventListener('click', () => {
+                this.play(index);
+                this.updateBoard();
+            });
+            this.boardElement.appendChild(cellElement);
+        });
+        this.updateBoard();
+    }
+ 
+    updateBoard() {
+        let cells = this.boardElement.children;
+        Array.from(cells).forEach((cell, index) => {
+            cell.innerHTML = this.board[index] || '';
+        });
+    }
+ 
     play(index) {
         if (this.winner || this.board[index]) return;
         this.board[index] = this.player;
+        this.updateBoard();
         if (this.checkWin()) {
             this.winner = this.player;
+            this.checkEndGame();
+        } else if (!this.board.includes(null)) {
+            this.winner = 'Draw';
+            this.checkEndGame();
+        } else {
+            this.player = this.player === 'X' ? 'O' : 'X';
+            if (this.mode === 'computer' && this.player === 'O') {
+                this.playSmart();  // Jouer automatiquement pour l'ordinateur
+            }
         }
-        this.player = this.player === 'X' ? 'O' : 'X';
-        this.nextMove();
     }
-
+ 
     checkWin() {
         const lines = [
             [0, 1, 2],
@@ -34,96 +69,78 @@ class Morpion {
         }
         return false;
     }
-
+ 
     playSmart() {
-        if (this.winner) return;
-        let available = this.board.reduce((acc, val, idx) => val ? acc : [...acc, idx], []);
-        let winningMove = this.findWinningMove(available);
-        let blockingMove = this.findBlockingMove(available);
-        let move;
-        if (winningMove !== null) {
-            move = winningMove;
-        } else if (blockingMove !== null) {
-            move = blockingMove;
-        } else {
-            move = available[Math.floor(Math.random() * available.length)];
-        }
-        this.play(move);
+        // Stratégie simple de jeu automatique: bloquer ou gagner
+        let move = this.findWinningMove('O') || this.findWinningMove('X') || this.findRandomMove();
+        if (move !== null) this.play(move);
     }
-
-    findWinningMove(available) {
-        for (let move of available) {
-            this.board[move] = this.player;
-            if (this.checkWin()) {
-                this.board[move] = null;
-                return move;
+ 
+    findWinningMove(player) {
+        for (let i = 0; i < this.board.length; i++) {
+            if (!this.board[i]) {
+                this.board[i] = player;
+                if (this.checkWin()) {
+                    this.board[i] = null;
+                    return i;
+                }
+                this.board[i] = null;
             }
-            this.board[move] = null;
         }
         return null;
     }
-
-    findBlockingMove(available) {
-        let opponent = this.player === 'X' ? 'O' : 'X';
-        for (let move of available) {
-            this.board[move] = opponent;
-            if (this.checkWin()) {
-                this.board[move] = null;
-                return move;
-            }
-            this.board[move] = null;
-        }
-        return null;
+ 
+    findRandomMove() {
+        let available = this.board.map((cell, idx) => cell === null ? idx : null).filter(val => val !== null);
+        return available.length ? available[Math.floor(Math.random() * available.length)] : null;
     }
-
-    nextMove() {
-        if (this.mode === 'computer' && this.player === 'O' && !this.winner) {
-            this.playSmart();
-        }
-        this.checkEndGame();
-    }
-
+ 
     checkEndGame() {
-        let resultElement = document.getElementById('result');
         if (this.winner) {
-            this.displayResultMessage(`Le gagnant est ${this.winner}`);
-        } else if (!this.board.includes(null)) {
-            this.displayResultMessage("C'est un match nul");
+            this.displayResultMessage(this.winner === 'Draw' ? "C'est un match nul" : `Le gagnant est ${this.winner}`);
+            this.showButtons();
         }
     }
-
+ 
     displayResultMessage(message) {
         let resultMessageElement = document.getElementById('resultMessage');
         resultMessageElement.textContent = message;
     }
-
+ 
     clearResultMessage() {
         let resultMessageElement = document.getElementById('resultMessage');
         resultMessageElement.textContent = '';
+    }
+ 
+    showButtons() {
         let resultElement = document.getElementById('result');
-        resultElement.textContent = '';
+        resultElement.innerHTML = ''; // Nettoie les boutons existants avant d'en ajouter de nouveaux
+ 
+        let replayButton = document.createElement('button');
+        replayButton.textContent = "Rejouer";
+        replayButton.onclick = () => this.restartGame();
+ 
+        let menuButton = document.createElement('button');
+        menuButton.textContent = "Revenir au menu";
+        menuButton.onclick = () => window.location.href = 'morpionMode.html';
+ 
+        resultElement.appendChild(replayButton);
+        resultElement.appendChild(menuButton);
+    }
+ 
+    restartGame() {
+        this.board = Array(9).fill(null);
+        this.player = 'X';
+        this.winner = null;
+        this.clearResultMessage();
+        this.initBoard(); // Réinitialise le tableau
+        let resultElement = document.getElementById('result');
+        resultElement.innerHTML = ''; // Cache les boutons après avoir cliqué sur Rejouer
     }
 }
-
-let game = new Morpion();
-let boardElement = document.getElementById('board');
-let resultMessageElement = document.createElement('div');
-
-resultMessageElement.id = 'resultMessage';
-boardElement.parentNode.insertBefore(resultMessageElement, boardElement);
-
-function updateBoard() {
-    boardElement.innerHTML = '';
-    game.board.forEach((cell, index) => {
-        let cellElement = document.createElement('div');
-        cellElement.innerHTML = cell || '';
-        cellElement.classList.add('cell');
-        cellElement.addEventListener('click', () => {
-            game.play(index);
-            updateBoard();
-        });
-        boardElement.appendChild(cellElement);
-    });
-}
-
-updateBoard();
+ 
+document.addEventListener('DOMContentLoaded', function() {
+    const selectedMode = localStorage.getItem('selectedMode') || 'computer';
+    console.log("Mode sélectionné: ", selectedMode); // Afficher le mode pour le débogage
+    new Morpion('X', selectedMode);
+});

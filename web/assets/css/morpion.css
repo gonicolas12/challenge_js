@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
  
+html, body {
+  overflow: hidden; /* Empêche le scrolling */
+  max-height: 100vh;
+  margin: 0;
+}
+ 
 body {
     display: flex;
     justify-content: center;
@@ -9,49 +15,37 @@ body {
     background-color: #0a0a0a;
     font-family: Arial, sans-serif;
 }
-
+ 
 #board {
     font-family: 'Press Start 2P', cursive;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-bottom: 20px;
-    color: #333;
+    color: #FFD700;
     perspective: 600px;
 }
-
+ 
 .cell {
     width: 60px;
     height: 60px;
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2em;
     cursor: pointer;
-    background-color: #fff;
+    background-color: #0a0a0a;
+    border: 1px solid #FFD700;
+    border-radius: 20%;
     box-shadow: 0 10px 10px rgba(0,0,0,0.2);
     transition: transform 0.5s;
     position: relative;
 }
-
+ 
 .cell:hover {
     box-shadow: 0 10px 10px rgba(0,0,0,0.1);
     transform: rotateY(180deg);
 }
-
-.button {
-    font-family: 'Press Start 2P', cursive;
-    padding: 10px 20px;
-    margin-right: 10px;
-    font-size: 1em;
-    border: 2px solid #FFD700;
-    cursor: pointer;
-    color: #FFD700;
-    background-color: #333;
-    text-decoration: none;
-}
-
+ 
 .center {
     display: flex;
     justify-content: center;
@@ -59,31 +53,34 @@ body {
     flex-direction: column;
     height: 100vh;
 }
-.button {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 15px;
-    padding: 10px 24px;
-    text-decoration: none;
-}
-
+ 
 #resultMessage {
     font-family: 'Press Start 2P', cursive;
     font-size: 2em;
     color: #FFD700;
     margin-bottom: 20px;
 }
-
+ 
 button {
-    font-family: 'Press Start 2P', cursive;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    font-size: 1em;
-    border: 2px solid #FFD700;
-    cursor: pointer;
-    color: #FFD700;
-    background-color: #333;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #333;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
-
+ 
+button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+ 
 .radio-container {
     font-family: 'Press Start 2P', cursive;
     display: block;
@@ -99,7 +96,7 @@ button {
     color: #FFD700;
     text-align: left;
   }
-  
+ 
   .radio-container input {
     position: absolute;
     opacity: 0;
@@ -112,28 +109,28 @@ button {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    background-color: #0a0a0a;
     border-radius: 50%;
     border: 1px solid #FFD700;
   }
-  
+ 
   /*lorsque l'utilisateur coche le bouton radio*/
   .radio-container input:checked ~ .checkmark {
     background-color: #FFD700;
   }
-  
+ 
   /*style du cercle intérieur*/
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
-  
+ 
   /*affichage du cercle intérieur quand le bouton radio est coché*/
   .radio-container input:checked ~ .checkmark:after {
     display: block;
   }
-  
+ 
   /*style du cercle intérieur*/
   .radio-container .checkmark:after {
     top: 9px;
@@ -143,4 +140,3 @@ button {
     border-radius: 50%;
     background: #0a0a0a;
   }
-  

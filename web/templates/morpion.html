@@ -3,11 +3,24 @@
 <head>
     <title>Morpion</title>
     <link rel="stylesheet" href="../assets/css/morpion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
 </head>
 <body>
+    <a href="http://localhost:8080/" id="homeButton" title="Accueil">
+        <i class="fas fa-home"></i>
+      </a>
+      <audio id="backgroundMusic" loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+      </audio>
+      <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+      </a>
     <div id="board"></div>
     <div id="result"></div>
     <div id="resultMessage"></div>
     <script src="../assets/js/morpion.js"></script>
+    <script src="../assets/js/musicButton.js"></script>
 </body>
 </html>
