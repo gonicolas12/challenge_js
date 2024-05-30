@@ -22,14 +22,19 @@ body {
     cursor: pointer;
     margin-top: 20px;
     transition: transform 0.2s ease, background-color 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
+#startButton:hover,
+#menuButton:hover {
 #startButton:hover,
 #menuButton:hover {
     background-color: #555;
     transform: scale(1.05);
 }
 
+#levelCounter,
+#modeSelection {
 #levelCounter,
 #modeSelection {
     font-family: 'Press Start 2P', cursive;
@@ -85,9 +90,17 @@ body {
 
 /* Cacher le cercle bleu d'origine */
 .radio-container input {
+}
+
+/* Cacher le cercle bleu d'origine */
+.radio-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
+}
+
+/* Création du cercle personnalisé */
+.checkmark {
 }
 
 /* Création du cercle personnalisé */
@@ -97,6 +110,7 @@ body {
     left: 0;
     height: 25px;
     width: 25px;
+    background-color: #0a0a0a;
     background-color: #0a0a0a;
     border-radius: 50%;
     border: 1px solid #FFD700;
@@ -121,12 +135,17 @@ body {
 
 /* Style du cercle intérieur */
 .radio-container .checkmark:after {
+}
+
+/* Style du cercle intérieur */
+.radio-container .checkmark:after {
     top: 9px;
     left: 9px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: #0a0a0a;
+}
 }
 
 #grid {

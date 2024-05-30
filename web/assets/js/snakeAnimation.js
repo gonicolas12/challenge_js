@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const snakeColor = '#FFD700'; // couleur jaune rétro
-    const segmentSize = 15; // taille de chaque segment
-    const updateInterval = 70; // intervalle de mise à jour
+    const snakeColor = '#FFD700';
+    const segmentSize = 15;
+    const updateInterval = 70;
 
     class Snake {
         constructor() {
-            this.segments = [{x: Math.random() * canvas.width, y: Math.random() * canvas.height}];
-            this.direction = Math.floor(Math.random() * 4); // 0: haut, 1: droite, 2: bas, 3: gauche
+            this.segments = [{ x: Math.random() * canvas.width, y: Math.random() * canvas.height }];
+            this.direction = Math.floor(Math.random() * 4);
             this.previousDirection = this.direction;
             this.minLength = 7; // longueur minimale du serpent
             this.length = Math.floor(Math.random() * 5) + this.minLength; // longueur aléatoire
@@ -56,10 +56,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // vérifie si la tête du serpent atteint un bord
         reachesEdge(head) {
             return head.x < segmentSize || head.x >= canvas.width - segmentSize ||
-                   head.y < segmentSize || head.y >= canvas.height - segmentSize;
+                head.y < segmentSize || head.y >= canvas.height - segmentSize;
         }
 
-        // ajuste la direction si le serpent atteint un bord
         adjustDirectionAtEdge(head) {
             let validDirections = [0, 1, 2, 3].filter(d => !this.isOppositeDirection(d, this.direction) && this.isWithinBounds(d, head));
             if (validDirections.length > 0) {
@@ -67,12 +66,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         }
 
-        // vérifie si la nouvelle direction est opposée à la direction actuelle
         isOppositeDirection(newDirection, currentDirection) {
             return (newDirection === 0 && currentDirection === 2) ||
-                   (newDirection === 1 && currentDirection === 3) ||
-                   (newDirection === 2 && currentDirection === 0) ||
-                   (newDirection === 3 && currentDirection === 1);
+                (newDirection === 1 && currentDirection === 3) ||
+                (newDirection === 2 && currentDirection === 0) ||
+                (newDirection === 3 && currentDirection === 1);
         }
 
         // vérifie si la nouvelle direction est dans les limites du canvas
@@ -93,7 +91,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         snakes.push(new Snake());
     }
 
-    // anime les serpents
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         snakes.forEach(snake => {

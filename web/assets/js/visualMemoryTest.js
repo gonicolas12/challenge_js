@@ -1,4 +1,5 @@
 // Const
+// Const
 const levelCounter = document.getElementById('levelCounter');
 const startButton = document.getElementById('startButton');
 const menuButton = document.getElementById('menuButton');
@@ -27,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+// Fonctions
 function updateLevelDisplay() {
   levelCounter.textContent = `Niveau: ${currentLevel}`;
 }
