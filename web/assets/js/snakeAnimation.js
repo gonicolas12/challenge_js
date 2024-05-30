@@ -5,84 +5,87 @@ document.addEventListener('DOMContentLoaded', (event) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const snakeColors = ['#347C2C', '#806517', '#8C7853']; // verts, marrons, et blanc
+    const snakeColor = '#FFD700';
+    const segmentSize = 15;
+    const updateInterval = 70;
 
     class Snake {
         constructor() {
-            this.segments = [{x: Math.random() * canvas.width, y: Math.random() * canvas.height}];
-            this.dx = Math.random() * 2 - 1;
-            this.dy = Math.random() * 2 - 1;
-            this.speed = Math.sqrt(this.dx * this.dx + this.dy * this.dy) * 2;
-            this.minLength = 80; // longueur minimale du serpent
-            this.length = Math.floor(Math.random() * 60) + this.minLength; // longueur aléatoire à partir de la longueur minimale
-            this.color = snakeColors[Math.floor(Math.random() * snakeColors.length)];
-            this.rotation = 0;
+            this.segments = [{ x: Math.random() * canvas.width, y: Math.random() * canvas.height }];
+            this.direction = Math.floor(Math.random() * 4);
+            this.previousDirection = this.direction;
+            this.minLength = 7; // longueur minimale du serpent
+            this.length = Math.floor(Math.random() * 5) + this.minLength; // longueur aléatoire
         }
 
         move() {
             let head = this.segments[0];
-            let newHead = {
-                x: head.x + this.dx,
-                y: head.y + this.dy
-            };
+            let newHead = { x: head.x, y: head.y };
 
-            if (Math.random() < 0.1) { 
-                let angle = Math.atan2(this.dy, this.dx) + (Math.random() * Math.PI/2 - Math.PI/4);
-                this.dx = this.speed * Math.cos(angle);
-                this.dy = this.speed * Math.sin(angle);
+            // changement de direction aléatoire avec restriction
+            if (Math.random() < 0.1) {
+                let potentialDirections = [0, 1, 2, 3].filter(d => !this.isOppositeDirection(d, this.direction));
+                this.direction = potentialDirections[Math.floor(Math.random() * potentialDirections.length)];
             }
 
-            if (newHead.x < 0 || newHead.x > canvas.width || newHead.y < 0 || newHead.y > canvas.height) {
-                this.dx *= -1;
-                this.dy *= -1;
+            switch (this.direction) {
+                case 0: newHead.y -= segmentSize; break; // haut
+                case 1: newHead.x += segmentSize; break; // droite
+                case 2: newHead.y += segmentSize; break; // bas
+                case 3: newHead.x -= segmentSize; break; // gauche
+            }
+
+            // vérifie les bords pour ajuster la direction si il y a besoins
+            if (this.reachesEdge(newHead)) {
+                this.adjustDirectionAtEdge(newHead);
             }
 
             this.segments.unshift(newHead);
-            if (this.segments.length > this.length) {
+            while (this.segments.length > this.length) {
                 this.segments.pop();
             }
         }
 
         draw() {
-            ctx.save(); // sauvegarde le contexte actuel
-            ctx.translate(this.segments[0].x, this.segments[0].y);
-            ctx.rotate(this.rotation + Math.PI);
-            ctx.fillStyle = this.color;
+            ctx.fillStyle = snakeColor;
+            this.segments.forEach(segment => {
+                ctx.fillRect(segment.x, segment.y, segmentSize, segmentSize);
+            });
+        }
 
-            // dessin de la tête en forme de triangle avec des pointes arrondies
-            ctx.beginPath();
-            ctx.moveTo(-10, 0);
-            ctx.lineTo(10, 0);
-            ctx.quadraticCurveTo(7, 15, 0, 20); // courbe pour la pointe supérieure
-            ctx.quadraticCurveTo(-7, 15, -10, 0); // courbe pour la pointe inférieure
-            ctx.closePath();
-            ctx.fill();
+        // vérifie si la tête du serpent atteint un bord
+        reachesEdge(head) {
+            return head.x < segmentSize || head.x >= canvas.width - segmentSize ||
+                head.y < segmentSize || head.y >= canvas.height - segmentSize;
+        }
 
-            // dessin des yeux
-            ctx.fillStyle = 'black';
-            ctx.beginPath();
-            ctx.arc(-5, 10, 2, 0, Math.PI * 2); // oeil gauche
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(5, 10, 2, 0, Math.PI * 2); // oeil droit
-            ctx.fill();
-            ctx.restore(); // restaure le contexte précédent (sans rotation)
-
-            // dessin du corps
-            for (let i = 1; i < this.segments.length; i++) {
-                let distance = Math.sqrt(Math.pow(this.segments[i].x - this.segments[i-1].x, 2) + Math.pow(this.segments[i].y - this.segments[i-1].y, 2));
-                let thickness = 8 * Math.pow(1 - i / this.segments.length, 2);
-                ctx.beginPath();
-                ctx.moveTo(this.segments[i-1].x, this.segments[i-1].y);
-                ctx.lineTo(this.segments[i].x, this.segments[i].y);
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = thickness;
-                ctx.stroke();
+        adjustDirectionAtEdge(head) {
+            let validDirections = [0, 1, 2, 3].filter(d => !this.isOppositeDirection(d, this.direction) && this.isWithinBounds(d, head));
+            if (validDirections.length > 0) {
+                this.direction = validDirections[Math.floor(Math.random() * validDirections.length)];
             }
         }
 
+        isOppositeDirection(newDirection, currentDirection) {
+            return (newDirection === 0 && currentDirection === 2) ||
+                (newDirection === 1 && currentDirection === 3) ||
+                (newDirection === 2 && currentDirection === 0) ||
+                (newDirection === 3 && currentDirection === 1);
+        }
+
+        // vérifie si la nouvelle direction est dans les limites du canvas
+        isWithinBounds(direction, head) {
+            switch (direction) {
+                case 0: return head.y >= segmentSize;
+                case 1: return head.x < canvas.width - segmentSize;
+                case 2: return head.y < canvas.height - segmentSize;
+                case 3: return head.x >= segmentSize;
+                default: return true;
+            }
+        }
     }
 
+    // crée 5 serpents
     let snakes = [];
     for (let i = 0; i < 5; i++) {
         snakes.push(new Snake());
@@ -92,10 +95,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         snakes.forEach(snake => {
             snake.move();
-            snake.rotation = Math.atan2(snake.dy, snake.dx) + Math.PI / 2; // ceci met à jour l'angle de rotation en fonction de la direction du mouvement
             snake.draw();
         });
-        requestAnimationFrame(animate);
+        setTimeout(animate, updateInterval); // setTimeout pour contrôler la vitesse
     }
     animate();
 
