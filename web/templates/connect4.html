@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Mémoire Visuelle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/connect4.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+</head>
+
+<body>
+    <a href="http://localhost:8080/" id="homeButton" title="Accueil">
+        <i class="fas fa-home"></i>
+    </a>
+    <audio id="backgroundMusic" loop>
+        <source src="../assets/audio/Undertale_music.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    <a href="#" id="musicButton" title="Activer/Désactiver la musique">
+        <i class="fas fa-music"></i>
+    </a>
+    <div id="connectFour">
+        <h2>Puissance 4</h2>
+        <div id="gameBoard"></div>
+        <div id="winnerMessage" style="display: none;">Le gagnant est : <span id="winnerColor"></span>!</div>
+        <button id="restartButton">Recommencer</button>
+    </div>    
+    <script src="../assets/js/connect4.js"></script>
+    <script src="../assets/js/musicButton.js"></script>
+</body>
+
+</html>
