@@ -22,7 +22,6 @@ body {
     cursor: pointer;
     margin-top: 20px;
     transition: transform 0.2s ease, background-color 0.3s ease;
-    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 #startButton:hover,
