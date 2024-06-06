@@ -1,74 +1,202 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #0a0a0a;
-    color: #FFD700;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0a0a0a;
+  color: #FFD700;
 }
 
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+button {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #333;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+.start-button {
+  font-family: 'Press Start 2P', cursive;
+  justify-content: center;
+  background-color: #333;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 50px;
+  display: block;
+  margin: 20px auto;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+
 #restartButton {
-    font-family: 'Press Start 2P', cursive;
-    background-color: #333;
-    color: #FFD700;
-    border: 2px solid #FFD700;
-    padding: 10px 15px;
-    font-size: 16px;
-    margin-top: 60px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #333;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin-top: 60px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 #restartButton:hover {
-    background-color: #555;
-    transform: scale(1.05);
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+#menuButton {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #333;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin-top: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 #connectFour {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 #gameBoard {
-    display: grid;
-    grid-template-columns: repeat(7, 50px);
-    grid-gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, 50px);
+  grid-gap: 5px;
 }
 
 .cell {
-    width: 50px;
-    height: 50px;
-    background-color: #0a0a0a;
-    border: 1px solid #FFD700;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  width: 50px;
+  height: 50px;
+  background-color: #0a0a0a;
+  border: 1px solid #FFD700;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.cell.Rouge { background-color: red; }
-.cell.Jaune { background-color: yellow; }
+.cell.Rouge {
+  background-color: red;
+}
+
+.cell.Jaune {
+  background-color: yellow;
+}
 
 #winnerMessage {
-    font-family: 'Press Start 2P', cursive;
-    color: #FFD700;
-    background-color: #333;
-    border: 2px solid #FFD700;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    width: 300px;
-    display: none;
+  font-family: 'Press Start 2P', cursive;
+  color: #FFD700;
+  background-color: #333;
+  border: 2px solid #FFD700;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-right: 5%;
+  width: 300px;
+  display: none;
 }
 
 #winnerMessage.visible {
-    display: block;
+  display: block;
+}
+
+.radio-container {
+  font-family: 'Press Start 2P', cursive;
+  display: block;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #FFD700;
+  text-align: left;
+}
+
+.radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #0a0a0a;
+  border-radius: 50%;
+  border: 1px solid #FFD700;
+}
+
+/*lorsque l'utilisateur coche le bouton radio*/
+.radio-container input:checked~.checkmark {
+  background-color: #FFD700;
+}
+
+/*style du cercle intérieur*/
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/*affichage du cercle intérieur quand le bouton radio est coché*/
+.radio-container input:checked~.checkmark:after {
+  display: block;
+}
+
+/*style du cercle intérieur*/
+.radio-container .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0a0a0a;
 }

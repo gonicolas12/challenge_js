@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test de Mémoire Visuelle</title>
+    <title>Puissance 4</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/connect4.css">
     <link rel="stylesheet" href="../assets/css/buttons.css">
@@ -21,11 +21,25 @@
     <a href="#" id="musicButton" title="Activer/Désactiver la musique">
         <i class="fas fa-music"></i>
     </a>
-    <div id="connectFour">
+    <div class="center">
+        <div id="modeSelection">
+            <label class="radio-container">Ordinateur
+                <input type="radio" name="mode" value="computer">
+                <span class="checkmark"></span>
+            </label>
+            <label class="radio-container">Local
+                <input type="radio" name="mode" value="player" checked>
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <button class="start-button">Commencer le jeu</button>
+    </div>
+    <div id="connectFour" style="display: none;">
         <div id="gameBoard"></div>
         <div id="winnerMessage" style="display: none;">Le gagnant est : <span id="winnerColor"></span>!</div>
-        <button id="restartButton">Recommencer</button>
-    </div>    
+        <button id="menuButton" style="display: none;">Revenir au Menu</button>
+        <button id="restartButton" style="display: none;">Recommencer</button>
+    </div>
     <script src="../assets/js/connect4.js"></script>
     <script src="../assets/js/musicButton.js"></script>
 </body>
